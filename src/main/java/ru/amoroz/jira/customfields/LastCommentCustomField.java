@@ -1,5 +1,13 @@
 package ru.amoroz.jira.customfields;
 
+import com.atlassian.jira.component.ComponentAccessor;
+import com.atlassian.jira.issue.RendererManager;
+import com.atlassian.jira.issue.comments.Comment;
+import com.atlassian.jira.issue.comparator.ApplicationUserBestNameComparator;
+import com.atlassian.jira.issue.customfields.impl.CalculatedCFType;
+import com.atlassian.jira.issue.fields.renderer.JiraRendererPlugin;
+import com.atlassian.jira.user.ApplicationUser;
+import com.atlassian.jira.util.NaturalOrderStringComparator;
 import com.atlassian.plugin.spring.scanner.annotation.component.Scanned;
 import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
 import org.slf4j.Logger;
@@ -17,27 +25,28 @@ import javax.inject.Inject;
 import java.util.List;
 import java.util.Map;
 
-@Scanned
-public class LastCommentCustomField extends TextCFType {
+//@Scanned
+public class LastCommentCustomField extends CalculatedCFType {
     private static final Logger log = LoggerFactory.getLogger(LastCommentCustomField.class);
 
-    public LastCommentCustomField(@ComponentImport CustomFieldValuePersister customFieldValuePersister, @ComponentImport GenericConfigManager genericConfigManager) {
-        super(customFieldValuePersister, genericConfigManager);
-    }
-    
     @Override
-    public Map<String, Object> getVelocityParameters(final Issue issue, final CustomField field, final FieldLayoutItem fieldLayoutItem) {
-        final Map<String, Object> map = super.getVelocityParameters(issue, field, fieldLayoutItem);
+    public int compare(Object user1, Object user2, FieldConfig fieldConfig) {
+        return new ApplicationUserBestNameComparator().compare((ApplicationUser) user1, (ApplicationUser) user2);
+    }
 
-        // This method is also called to get the default value, in
-        // which case issue is null so we can't use it to add currencyLocale
-        if (issue == null) {
-            return map;
-        }
+    @Override
+    public Object getValueFromIssue(CustomField customField, Issue issue) {
+        Comment c = ComponentAccessor.getCommentManager().getLastComment(issue);
+        return c == null ? "" : (c.getBody().length() > 90 ? c.getBody().substring(0, 90) : c.getBody());
+    }
 
-        FieldConfig fieldConfig = field.getRelevantConfig(issue);
-         //add what you need to the map here
+    @Override
+    public String getStringFromSingularObject(Object o) {
+        return o.toString();
+    }
 
-        return map;
+    @Override
+    public Object getSingularObjectFromString(String s) throws FieldValidationException {
+        return s;
     }
 }

@@ -12,18 +12,21 @@ import com.atlassian.jira.issue.customfields.view.CustomFieldParams;
 import com.atlassian.jira.issue.fields.CustomField;
 import com.atlassian.jira.issue.fields.config.FieldConfig;
 import com.atlassian.jira.user.ApplicationUser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class LastUserCommentedCFType extends CalculatedCFType {
+    private static final Logger log = LoggerFactory.getLogger(LastUserCommentedCFType.class);
 
     @Override
-    public int compare(Object o, Object t1, FieldConfig fieldConfig) {
-        return new ApplicationUserBestNameComparator().compare((ApplicationUser) o, (ApplicationUser) t1);
+    public int compare(Object str1, Object str2, FieldConfig fieldConfig) {
+        return ((String) str1).compareTo(((String) str2));
     }
 
     @Override
     public Object getValueFromIssue(CustomField customField, Issue issue) {
         Comment c = ComponentAccessor.getCommentManager().getLastComment(issue);
-        return c == null ? "" : (c.getBody().length() > 90 ? c.getBody().substring(0, 90) : c.getBody());
+        return c == null ? "" : c.getAuthorFullName();
     }
 
     @Override
