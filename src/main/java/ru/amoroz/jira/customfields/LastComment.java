@@ -31,7 +31,7 @@ public class LastComment extends CalculatedCFType {
         // set numeric field size in field description, default 90
         int maxStringSize = 90;
         String description = customField.getDescription();
-        if (description.length() > 0) {
+        if (description != null && description.length() > 0) {
             try {
                 maxStringSize = Integer.parseInt(description);
             } catch (Exception e) {

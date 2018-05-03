@@ -1,4 +1,2 @@
 #disable_html_escaping()
-#if($value && $value.length() > 0)
-    $value
-#end
+$value
