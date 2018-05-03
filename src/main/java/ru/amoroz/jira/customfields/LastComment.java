@@ -1,8 +1,12 @@
 package ru.amoroz.jira.customfields;
 
 import com.atlassian.jira.component.ComponentAccessor;
+import com.atlassian.jira.issue.RendererManager;
 import com.atlassian.jira.issue.comments.Comment;
 import com.atlassian.jira.issue.customfields.impl.CalculatedCFType;
+import com.atlassian.jira.issue.fields.layout.field.FieldLayoutItem;
+import com.atlassian.jira.issue.fields.layout.field.FieldLayoutManager;
+import com.atlassian.jira.issue.fields.renderer.IssueRenderContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.atlassian.jira.issue.customfields.impl.FieldValidationException;
@@ -34,5 +38,11 @@ public class LastComment extends CalculatedCFType {
     @Override
     public Object getSingularObjectFromString(String s) throws FieldValidationException {
         return s;
+    }
+
+    @Override
+    public boolean isRenderable() {
+        //return super.isRenderable();
+        return true;
     }
 }
