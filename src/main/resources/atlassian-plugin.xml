@@ -22,19 +22,19 @@
     <context>customizationPlugin</context>
   </web-resource>
 
-  <customfield-type name="Last Comment Custom Field" i18n-name-key="last-comment-custom-field.name" key="last-comment-custom-field" class="ru.amoroz.jira.customfields.LastComment">
-    <description key="last-comment-custom-field.description">Issue Navigator Last Comment. Default field size is 90. You can change field size in description.</description>
+  <customfield-type name="Issue navigator Last Comment" i18n-name-key="last-comment-custom-field.name" key="last-comment-custom-field" class="ru.amoroz.jira.customfields.LastComment">
+    <description key="last-comment-custom-field.description">Last Comment. Default field size is 90. You can change field size in description.</description>
     <resource type="velocity" name="column-view" location="/templates/customfields/last-comment/column-view-comment.vm"/>
     <resource type="velocity" name="xml" location="/templates/customfields/last-comment/xml-comment.vm"/>
   </customfield-type>
 
-  <customfield-type name="Last user commenter" key="lastusercommented" class="ru.amoroz.jira.customfields.LastCommentedUser">
-    <description>Issue navigator last commenter.</description>
+  <customfield-type name="Issue navigator Last user commenter" key="lastusercommented" class="ru.amoroz.jira.customfields.LastCommentedUser">
+    <description>Last commenter.</description>
     <resource type="velocity" name="column-view" location="/templates/customfields/last-commented-user/column-view-user.vm"/>
     <resource type="velocity" name="xml" location="/templates/customfields/last-commented-user/xml-user.vm"/>
   </customfield-type>
 
-  <customfield-type name="Last Comment Date" i18n-name-key="last-comment-date.name" key="last-comment-date" class="ru.amoroz.jira.customfields.LastCommentDate">
+  <customfield-type name="Issue navigator Last Comment Date" i18n-name-key="last-comment-date.name" key="last-comment-date" class="ru.amoroz.jira.customfields.LastCommentDate">
     <description key="last-comment-date.description">Last Comment Date.</description>
     <resource type="velocity" name="column-view" location="/templates/customfields/last-comment-date/column-view-date.vm"/>
     <resource type="velocity" name="xml" location="/templates/customfields/last-comment-date/xml-date.vm"/>
