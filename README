@@ -14,3 +14,4 @@ https://jira.atlassian.com/browse/JRASERVER-2734?focusedCommentId=18269&page=com
 
 P.S.
 If you want to see rendered wiki content in issue navigator, use Atlassian Wiki-renderer in Default Field Configuration.
+Last comment size can be changed in field description (default is 90).
