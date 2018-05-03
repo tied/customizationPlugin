@@ -1,10 +1,12 @@
 package ru.amoroz.jira.customfields;
 
+import com.atlassian.jira.issue.customfields.SortableCustomField;
 import com.atlassian.jira.issue.customfields.impl.AbstractSingleFieldType;
 import com.atlassian.jira.issue.customfields.impl.FieldValidationException;
 import com.atlassian.jira.issue.customfields.manager.GenericConfigManager;
 import com.atlassian.jira.issue.customfields.persistence.CustomFieldValuePersister;
 import com.atlassian.jira.issue.customfields.persistence.PersistenceFieldType;
+import com.atlassian.jira.issue.fields.config.FieldConfig;
 import com.atlassian.plugin.spring.scanner.annotation.component.Scanned;
 import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
 import org.slf4j.Logger;
@@ -13,7 +15,7 @@ import org.slf4j.LoggerFactory;
 import java.math.BigDecimal;
 
 @Scanned
-public class MoneyRubleField extends AbstractSingleFieldType<BigDecimal> {
+public class MoneyRubleField extends AbstractSingleFieldType<BigDecimal> implements SortableCustomField<BigDecimal> {
     private static final Logger log = LoggerFactory.getLogger(MoneyRubleField.class);
 
     public MoneyRubleField(@ComponentImport CustomFieldValuePersister customFieldValuePersister, @ComponentImport GenericConfigManager genericConfigManager) {
@@ -54,5 +56,10 @@ public class MoneyRubleField extends AbstractSingleFieldType<BigDecimal> {
     @Override
     protected PersistenceFieldType getDatabaseType() {
         return PersistenceFieldType.TYPE_LIMITED_TEXT;
+    }
+
+    @Override
+    public int compare(BigDecimal bigDecimal, BigDecimal t1, FieldConfig fieldConfig) {
+        return bigDecimal.compareTo(t1);
     }
 }
