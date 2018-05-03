@@ -11,6 +11,7 @@ https://developer.atlassian.com/server/jira/platform/creating-a-custom-field-typ
 https://confluence.atlassian.com/display/JIRA043/How+to+create+a+new+Custom+Field+Type
 https://community.atlassian.com/t5/Answers-Developer-Questions/Jira-7-Plugin-sample-jira-custom-field-example-tutorial-jira/qaq-p/481919
 https://jira.atlassian.com/browse/JRASERVER-2734?focusedCommentId=18269&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel
+https://developer.atlassian.com/server/jira/platform/creating-a-custom-field-in-jira/
 
 P.S.
 If you want to see rendered wiki content in issue navigator, use Atlassian Wiki-renderer in Default Field Configuration.
