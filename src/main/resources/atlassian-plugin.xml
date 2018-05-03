@@ -40,4 +40,10 @@
     <resource type="velocity" name="xml" location="/templates/customfields/last-comment-date/xml-date.vm"/>
   </customfield-type>
 
+  <customfield-type name="Money Ruble Field" i18n-name-key="money-ruble-field.name" key="money-ruble-field" class="ru.amoroz.jira.customfields.MoneyRubleField">
+    <description key="money-ruble-field.description">Money Russian Ruble Field.</description>
+    <resource name="view" type="velocity" location="/templates/customfields/money-ruble-field/view.vm"/>
+    <resource name="edit" type="velocity" location="/templates/customfields/money-ruble-field/edit.vm"/>
+  </customfield-type>
+
 </atlassian-plugin>
