@@ -22,7 +22,7 @@ public class LastCommentedUser extends CalculatedCFType {
     @Override
     public Object getValueFromIssue(CustomField customField, Issue issue) {
         Comment c = ComponentAccessor.getCommentManager().getLastComment(issue);
-        return c == null ? "" : c.getAuthorFullName();
+        return c == null ? "" : "[~" + c.getAuthorApplicationUser().getUsername() + "]";
     }
 
     @Override
@@ -33,5 +33,10 @@ public class LastCommentedUser extends CalculatedCFType {
     @Override
     public Object getSingularObjectFromString(String s) throws FieldValidationException {
         return s;
+    }
+
+    @Override
+    public boolean isRenderable() {
+        return true;
     }
 }

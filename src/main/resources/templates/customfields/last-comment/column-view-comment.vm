@@ -1,2 +1,6 @@
 #disable_html_escaping()
-${value}
+#if($value && $value.length() > 7)
+    $value.substring(0, 7)
+#else
+    $value
+#end
