@@ -27,7 +27,20 @@ public class LastComment extends CalculatedCFType {
     @Override
     public Object getValueFromIssue(CustomField customField, Issue issue) {
         Comment c = ComponentAccessor.getCommentManager().getLastComment(issue);
-        return c == null ? "" : (c.getBody().length() > 90 ? c.getBody().substring(0, 90) : c.getBody());
+
+        // set numeric field size in field description, default 90
+        int maxStringSize = 90;
+        String description = customField.getDescription();
+        if (description.length() > 0) {
+            try {
+                maxStringSize = Integer.parseInt(description);
+            } catch (Exception e) {
+                maxStringSize = 0;
+                log.error(issue.getKey() + " ERROR setting getLastComment SIZE. User set description to: " + description);
+            }
+        }
+
+        return (c != null && maxStringSize > 0) ? (c.getBody().length() > maxStringSize ? c.getBody().substring(0, maxStringSize) : c.getBody()) : "";
     }
 
     @Override
