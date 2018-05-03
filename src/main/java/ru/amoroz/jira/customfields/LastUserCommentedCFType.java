@@ -18,10 +18,12 @@ import org.slf4j.LoggerFactory;
 public class LastUserCommentedCFType extends CalculatedCFType {
     private static final Logger log = LoggerFactory.getLogger(LastUserCommentedCFType.class);
 
-    @Override
-    public int compare(Object str1, Object str2, FieldConfig fieldConfig) {
-        return ((String) str1).compareTo(((String) str2));
-    }
+//    for SortableCustomField interface only
+//
+//    @Override
+//    public int compare(Object user1, Object user2, FieldConfig fieldConfig) {
+//        return new ApplicationUserBestNameComparator().compare((ApplicationUser) user1, (ApplicationUser) user2);
+//    }
 
     @Override
     public Object getValueFromIssue(CustomField customField, Issue issue) {

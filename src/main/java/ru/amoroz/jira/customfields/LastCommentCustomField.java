@@ -3,8 +3,11 @@ package ru.amoroz.jira.customfields;
 import com.atlassian.jira.component.ComponentAccessor;
 import com.atlassian.jira.issue.RendererManager;
 import com.atlassian.jira.issue.comments.Comment;
+import com.atlassian.jira.issue.comments.CommentManager;
 import com.atlassian.jira.issue.comparator.ApplicationUserBestNameComparator;
 import com.atlassian.jira.issue.customfields.impl.CalculatedCFType;
+import com.atlassian.jira.issue.fields.layout.field.FieldLayoutManager;
+import com.atlassian.jira.issue.fields.renderer.IssueRenderContext;
 import com.atlassian.jira.issue.fields.renderer.JiraRendererPlugin;
 import com.atlassian.jira.user.ApplicationUser;
 import com.atlassian.jira.util.NaturalOrderStringComparator;
@@ -29,10 +32,12 @@ import java.util.Map;
 public class LastCommentCustomField extends CalculatedCFType {
     private static final Logger log = LoggerFactory.getLogger(LastCommentCustomField.class);
 
-    @Override
-    public int compare(Object user1, Object user2, FieldConfig fieldConfig) {
-        return new ApplicationUserBestNameComparator().compare((ApplicationUser) user1, (ApplicationUser) user2);
-    }
+//    for SortableCustomField interface only
+//
+//    @Override
+//    public int compare(Object str1, Object str2, FieldConfig fieldConfig) {
+//        return ((String) str1).compareTo(((String) str2));
+//    }
 
     @Override
     public Object getValueFromIssue(CustomField customField, Issue issue) {
