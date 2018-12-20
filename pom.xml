@@ -4,13 +4,13 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>ru.amoroz</groupId>
     <artifactId>customizationPlugin</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <organization>
-        <name>Example Company</name>
-        <url>http://www.example.com/</url>
+        <name>Alexander-Moroz</name>
+        <url>https://github.com/Alexander-Moroz/</url>
     </organization>
     <name>customizationPlugin</name>
-    <description>This is the ru.amoroz:customizationPlugin plugin for Atlassian JIRA.</description>
+    <description>This is the customizationPlugin for Atlassian JIRA.</description>
     <packaging>atlassian-plugin</packaging>
     <dependencies>
         <dependency>
